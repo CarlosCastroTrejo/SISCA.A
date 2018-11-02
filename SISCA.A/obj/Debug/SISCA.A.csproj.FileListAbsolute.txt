@@ -1,0 +1,10 @@
+\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\SISCA.A\bin\Debug\SISCA.A.exe.config
+\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\SISCA.A\bin\Debug\SISCA.A.exe
+\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\SISCA.A\bin\Debug\SISCA.A.pdb
+\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\SISCA.A\obj\Debug\SISCA.A.Form1.resources
+\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\SISCA.A\obj\Debug\SISCA.A.Properties.Resources.resources
+\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\SISCA.A\obj\Debug\SISCA.A.csproj.GenerateResource.Cache
+\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\SISCA.A\obj\Debug\SISCA.A.csproj.CoreCompileInputs.cache
+\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\SISCA.A\obj\Debug\SISCA.A.exe
+\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\SISCA.A\obj\Debug\SISCA.A.pdb
+\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\SISCA.A\obj\Debug\SISCA.A.csprojResolveAssemblyReference.cache
