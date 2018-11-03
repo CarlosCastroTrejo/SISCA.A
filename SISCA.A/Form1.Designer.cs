@@ -163,6 +163,7 @@
             this.Continuar.TabIndex = 37;
             this.Continuar.Text = "Continuar";
             this.Continuar.UseVisualStyleBackColor = false;
+            this.Continuar.Click += new System.EventHandler(this.Continuar_Click);
             // 
             // Llenar
             // 
