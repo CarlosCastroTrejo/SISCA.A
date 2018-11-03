@@ -41,13 +41,14 @@ namespace SISCA.A
             if (MatriculaBox.Text.Length != 0)
             {
                 char PrimeraLetra = char.ToUpper(MatriculaBox.Text[0]);
+                SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
+                connection.Open();
                 if (PrimeraLetra == 'A')
                 {
-                    SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A1\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
-                    connection.Open();
+                   
                     //Checar que si abre la base de datos
 
-                    string query = "SELECT * FROM Alumnos Where (Matricula = '" + MatriculaBox.Text + "')";
+                    string query = "SELECT * FROM C0laborador Where (Nomina = '" + MatriculaBox.Text + "')";
                     string output = null;
                     SqlCommand command = new SqlCommand(query, connection);
                     SqlDataReader dataReader = command.ExecuteReader();
@@ -85,6 +86,15 @@ namespace SISCA.A
                             EntradaBox.Text = "Entrada";
                             DateTime now = DateTime.Now;
                             HoraBox.Text = now.ToString("F");
+
+                            if (NombreBox.Text != null && MatriculaBox.Text != null && CarreraBox.Text != null && HoraBox.Text != null && EntradaBox.Text != null && AlumnoBox.Text != null)
+                            {
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Formulario Incompleto", "SISCA.A - Registro de usuarios");
+                            }
                         }
                         else
                         {
@@ -92,30 +102,30 @@ namespace SISCA.A
                             MessageBox.Show("Intenta de nuevo", "SISCA.A - Registro de usuarios");
                         }
                     }
-                    connection.Close();
+                   
                 }
                 else if (PrimeraLetra == 'L')
                 {
 
-                    SqlConnection connection2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\carlosemilianocastro\Desktop\ITESM\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
-                    connection2.Open();
+                    //SqlConnection connection2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\carlosemilianocastro\Desktop\ITESM\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
+                    //connection2.Open();
                     //Checar que si abre la base de datos
 
-                    string query2 = "SELECT * FROM Colaborador WHERE (Nomina = '" + MatriculaBox.Text + "')";
-                    string output2 = null;
-                    SqlCommand command2 = new SqlCommand(query2, connection2);
+                    string query = "SELECT * FROM Colaborador WHERE (Nomina = '" + MatriculaBox.Text + "')";
+                    string output = null;
+                    SqlCommand command = new SqlCommand(query, connection);
 
-                    SqlDataReader dataReader2 = command2.ExecuteReader();
-                    while (dataReader2.Read())
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
                     {
-                        output2 = output2 + dataReader2.GetValue(1);
-                        NombreBox.Text = output2;
-                        output2 = null;
-                        output2 = output2 + dataReader2.GetValue(2);
-                        CarreraBox.Text = output2;
+                        output = output + dataReader.GetValue(1);
+                        NombreBox.Text = output;
+                        output = null;
+                        output = output + dataReader.GetValue(2);
+                        CarreraBox.Text = output;
                     }
-                    dataReader2.Close();
-                    if (output2 == null || output2 == "")
+                    dataReader.Close();
+                    if (output == null || output == "")
                     {
                         exist = false;
                     }
@@ -138,12 +148,13 @@ namespace SISCA.A
                             // user clicked no
                         }
                     }
-                    connection2.Close();
+                    connection.Close();
                 }
                 else
                 {
                     MessageBox.Show("Matricula incorrecta", "SISCA.A - Registro de alumnos");
                 }
+                connection.Close();
 
             }
             else
