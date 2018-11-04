@@ -240,6 +240,7 @@ namespace SISCA.A
             if (formularioLLeno == true && entrada == true)
             {
                 this.Hide();
+                
                 SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
                 connection.Open();
 
@@ -252,10 +253,11 @@ namespace SISCA.A
                 command.Parameters.Add("@FechaEntrada", now);
                 command.ExecuteNonQuery();
                 connection.Close();
+                EleccionAsunto asunto = new EleccionAsunto();
+                asunto.Show();
             }
             else if (formularioLLeno == true && entrada == false)
             {
-                this.Hide();
                 SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
                 connection.Open();
                 // SqlCommand command = new SqlCommand("INSERT INTO MakerSpace (FechaSalida) Values (@FechaSalida) WHERE Matricula (Matricula = '"+ MatriculaBox.Text + "')", connection);
@@ -264,11 +266,45 @@ namespace SISCA.A
                 command.Parameters.Add("@FechaSalida", now);
                 command.ExecuteNonQuery();
                 connection.Close();
+                NombreBox.Text = null;
+                MatriculaBox.Text = null;
+                AlumnoBox.Text = null;
+                CarreraBox.Text = null;
+                AlumnoBox.Text = null;
+                EntradaBox.Text = null;
+                HoraBox.Text = null;
+                MessageBox.Show("¡Salida registrada exitosamente!", "SISCA.A - Registro de usuarios");
+
             }
             else
             {
                 MessageBox.Show("Formulario Incompleto", "SISCA.A - Registro de usuarios");
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        public void MatriculaBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -8,3 +8,4 @@
 \\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\SISCA.A\obj\Debug\SISCA.A.exe
 \\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\SISCA.A\obj\Debug\SISCA.A.pdb
 \\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\SISCA.A\obj\Debug\SISCA.A.csprojResolveAssemblyReference.cache
+\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\SISCA.A\obj\Debug\SISCA.A.EleccionAsunto.resources

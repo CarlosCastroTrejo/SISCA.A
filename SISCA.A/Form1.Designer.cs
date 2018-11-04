@@ -72,6 +72,7 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Registro de usuarios MakerSpace";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // panel1
             // 
@@ -83,6 +84,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(956, 100);
             this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // pictureBox1
             // 
@@ -93,6 +95,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox2
             // 
@@ -317,6 +320,7 @@
             this.MatriculaBox.Name = "MatriculaBox";
             this.MatriculaBox.Size = new System.Drawing.Size(428, 24);
             this.MatriculaBox.TabIndex = 25;
+            this.MatriculaBox.TextChanged += new System.EventHandler(this.MatriculaBox_TextChanged);
             // 
             // label3
             // 
@@ -386,7 +390,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SISCA.A";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -421,9 +425,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox CarreraBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox NombreBox;
+        public System.Windows.Forms.TextBox NombreBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox MatriculaBox;
+        public System.Windows.Forms.TextBox MatriculaBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
