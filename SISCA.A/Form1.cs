@@ -51,11 +51,11 @@ namespace SISCA.A
                 char PrimeraLetra = char.ToUpper(MatriculaBox.Text[0]);
                 SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
                 connection.Open();
+                string output = null;
+                string output2 = null;
                 if (PrimeraLetra == 'A')
                 {
                     string query = "SELECT * FROM Alumno Where (Matricula = '" + MatriculaBox.Text + "')";
-                    string output = null;
-                    string output2 = null; 
                     SqlCommand command = new SqlCommand(query, connection);
                     SqlDataReader dataReader = command.ExecuteReader();
                     while (dataReader.Read())
@@ -85,17 +85,24 @@ namespace SISCA.A
                         output = null;
                         while (dataReader.Read())
                         {
+                            output = "";
+                            output2 = "";
                             output = output + dataReader.GetValue(0);
                             output2 = output2 + dataReader.GetValue(5);
                         }
-                        if (output == null || output == "")
+
+                        if (output == null)
                         {
                             EntradaBox.Text = "Entrada";
                         }
-                        else
+                        else if (output != null && (output2 == null || output2==""))
                         {
                             EntradaBox.Text = "Salida";
                             entrada = false;
+                        }
+                        else 
+                        {
+                            EntradaBox.Text = "Entrada";
                         }
                         dataReader.Close();
                     }
@@ -116,6 +123,11 @@ namespace SISCA.A
                             if (NombreBox.Text != null && MatriculaBox.Text != null && CarreraBox.Text != null && HoraBox.Text != null && EntradaBox.Text != null && AlumnoBox.Text != null)
                             {
                                 formularioLLeno = true;
+                                command = new SqlCommand("INSERT INTO Alumno (Matricula,Nombre,Carrera) Values (@Matricula,@Nombre,@Carrera)", connection);
+                                command.Parameters.Add("@Matricula", MatriculaBox.Text);
+                                command.Parameters.Add("@Nombre", NombreBox.Text);
+                                command.Parameters.Add("@Carrera", CarreraBox.Text);
+                                command.ExecuteNonQuery();
                             }
                         }
                         else
@@ -129,7 +141,6 @@ namespace SISCA.A
                 else if (PrimeraLetra == 'L')
                 {
                     string query = "SELECT * FROM Colaborador WHERE (Nomina = '" + MatriculaBox.Text + "')";
-                    string output = null;
                     SqlCommand command = new SqlCommand(query, connection);
 
                     SqlDataReader dataReader = command.ExecuteReader();
@@ -151,6 +162,32 @@ namespace SISCA.A
                     {
                         AlumnoBox.Text = "Colaborador";
                         HoraBox.Text = now.ToString("F");
+                        formularioLLeno = true;
+                        command = new SqlCommand("SELECT * FROM MakerSpace Where (Matricula = '" + MatriculaBox.Text + "')", connection);
+                        dataReader = command.ExecuteReader();
+                        output = null;
+                        while (dataReader.Read())
+                        {
+                            output = "";
+                            output2 = "";
+                            output = output + dataReader.GetValue(0);
+                            output2 = output2 + dataReader.GetValue(5);
+                        }
+
+                        if (output == null)
+                        {
+                            EntradaBox.Text = "Entrada";
+                        }
+                        else if (output != null && (output2 == null || output2 == ""))
+                        {
+                            EntradaBox.Text = "Salida";
+                            entrada = false;
+                        }
+                        else
+                        {
+                            EntradaBox.Text = "Entrada";
+                        }
+                        dataReader.Close();
                     }
                     else if (!exist)
                     {
@@ -170,6 +207,11 @@ namespace SISCA.A
                             if (NombreBox.Text != null && MatriculaBox.Text != null && CarreraBox.Text != null && HoraBox.Text != null && EntradaBox.Text != null && AlumnoBox.Text != null)
                             {
                                 formularioLLeno = true;
+                                command = new SqlCommand("INSERT INTO Colaborador (Nomina,Nombre,Cargo) Values (@Matricula,@Nombre,@Carrera)", connection);
+                                command.Parameters.Add("@Matricula", MatriculaBox.Text);
+                                command.Parameters.Add("@Nombre", NombreBox.Text);
+                                command.Parameters.Add("@Carrera", CarreraBox.Text);
+                                command.ExecuteNonQuery();
                             }
                         }
                         else
