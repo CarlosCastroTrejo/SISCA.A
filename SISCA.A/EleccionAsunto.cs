@@ -13,15 +13,16 @@ namespace SISCA.A
     public partial class EleccionAsunto : Form
     {
         string asunto = null;
-
-        public EleccionAsunto()
+        string matricula;
+        public EleccionAsunto(string matricula)
         {
+            this.matricula = matricula;
             InitializeComponent();
         }
 
         private void EleccionAsunto_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -73,6 +74,7 @@ namespace SISCA.A
                 if (MessageBox.Show("¡Ingreso registrado exitosamente!", "SISCA.A - Registro de alumnos", MessageBoxButtons.OK, MessageBoxIcon.Question) == DialogResult.OK)
                 {
 
+                   
                 }
             }
 

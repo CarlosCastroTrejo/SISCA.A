@@ -220,6 +220,7 @@
             // 
             // EntradaBox
             // 
+            this.EntradaBox.Enabled = false;
             this.EntradaBox.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EntradaBox.Location = new System.Drawing.Point(602, 463);
             this.EntradaBox.Name = "EntradaBox";
@@ -239,6 +240,7 @@
             // 
             // HoraBox
             // 
+            this.HoraBox.Enabled = false;
             this.HoraBox.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HoraBox.Location = new System.Drawing.Point(44, 463);
             this.HoraBox.Name = "HoraBox";
@@ -258,6 +260,7 @@
             // 
             // AlumnoBox
             // 
+            this.AlumnoBox.Enabled = false;
             this.AlumnoBox.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AlumnoBox.Location = new System.Drawing.Point(44, 396);
             this.AlumnoBox.Name = "AlumnoBox";
@@ -277,6 +280,7 @@
             // 
             // CarreraBox
             // 
+            this.CarreraBox.Enabled = false;
             this.CarreraBox.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CarreraBox.Location = new System.Drawing.Point(44, 331);
             this.CarreraBox.Name = "CarreraBox";
@@ -296,6 +300,7 @@
             // 
             // NombreBox
             // 
+            this.NombreBox.Enabled = false;
             this.NombreBox.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NombreBox.Location = new System.Drawing.Point(44, 261);
             this.NombreBox.Name = "NombreBox";

@@ -15,10 +15,11 @@ namespace SISCA.A
 {
     public partial class Form1 : Form
     {
-        bool formularioLLeno = false; // Variable booleana para indentificar si el formulario esta completo
+         bool formularioLLeno = false; // Variable booleana para indentificar si el formulario esta completo
         DateTime now = DateTime.Now;
         bool entrada = true;
-
+        bool nuevo = false;
+        
         public Form1()
         {
             InitializeComponent();
@@ -42,8 +43,13 @@ namespace SISCA.A
             AlumnoObliga.Visible = false;
             RegistraObliga.Visible = false;
             bool exist = true;
-             entrada = true;
+            entrada = true;
+            nuevo = false;
             formularioLLeno = false;
+
+            NombreBox.Enabled = false;
+            CarreraBox.Enabled = false;
+            AlumnoBox.Enabled = false;
 
             if (MatriculaBox.Text.Length != 0)
             {
@@ -115,20 +121,16 @@ namespace SISCA.A
                             CarreraObliga.Visible = true;
                             AlumnoObliga.Visible = true;
                             RegistraObliga.Visible = true;
+                            NombreBox.Enabled = true;
+                            CarreraBox.Enabled = true;
+                            AlumnoBox.Enabled = true;
 
                             AlumnoBox.Text = "Alumno";
+                            EntradaBox.Text = "Entrada";
                             DateTime now = DateTime.Now;
                             HoraBox.Text = now.ToString("F");
-
-                            if (NombreBox.Text != null && MatriculaBox.Text != null && CarreraBox.Text != null && HoraBox.Text != null && EntradaBox.Text != null && AlumnoBox.Text != null)
-                            {
-                                formularioLLeno = true;
-                                command = new SqlCommand("INSERT INTO Alumno (Matricula,Nombre,Carrera) Values (@Matricula,@Nombre,@Carrera)", connection);
-                                command.Parameters.Add("@Matricula", MatriculaBox.Text);
-                                command.Parameters.Add("@Nombre", NombreBox.Text);
-                                command.Parameters.Add("@Carrera", CarreraBox.Text);
-                                command.ExecuteNonQuery();
-                            }
+                            nuevo = true;
+                            
                         }
                         else
                         {
@@ -199,20 +201,16 @@ namespace SISCA.A
                             CarreraObliga.Visible = true;
                             AlumnoObliga.Visible = true;
                             RegistraObliga.Visible = true;
+                            NombreBox.Enabled = true;
+                            CarreraBox.Enabled = true;
+                            AlumnoBox.Enabled = true;
 
                             AlumnoBox.Text = "Colaborador";
+                            EntradaBox.Text = "Entrada";
                             DateTime now = DateTime.Now;
                             HoraBox.Text = now.ToString("F");
-
-                            if (NombreBox.Text != null && MatriculaBox.Text != null && CarreraBox.Text != null && HoraBox.Text != null && EntradaBox.Text != null && AlumnoBox.Text != null)
-                            {
-                                formularioLLeno = true;
-                                command = new SqlCommand("INSERT INTO Colaborador (Nomina,Nombre,Cargo) Values (@Matricula,@Nombre,@Carrera)", connection);
-                                command.Parameters.Add("@Matricula", MatriculaBox.Text);
-                                command.Parameters.Add("@Nombre", NombreBox.Text);
-                                command.Parameters.Add("@Carrera", CarreraBox.Text);
-                                command.ExecuteNonQuery();
-                            }
+                            nuevo = true;
+                            
                         }
                         else
                         {
@@ -237,14 +235,59 @@ namespace SISCA.A
 
         private void Continuar_Click(object sender, EventArgs e)
         {
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
+            connection.Open();
+            if (nuevo)
+            {
+                if (MatriculaBox.Text[0] == 'A')
+                {
+                    if (NombreBox.Text != "" && MatriculaBox.Text != "" && CarreraBox.Text != "" && HoraBox.Text != "" && EntradaBox.Text != "" && AlumnoBox.Text != "")
+                    {
+                        formularioLLeno = true;
+                        entrada = true;
+                        SqlCommand command = new SqlCommand("INSERT INTO Alumno (Matricula,Nombre,Carrera) Values (@Mat,@Nom,@Car)", connection);
+                        command.Parameters.Add("@Mat", MatriculaBox.Text);
+                        command.Parameters.Add("@Nom", NombreBox.Text);
+                        command.Parameters.Add("@Car", CarreraBox.Text);
+                        command.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        formularioLLeno = false;
+                    }
+                }
+                else if (MatriculaBox.Text[0] == 'L')
+                {
+                    if (NombreBox.Text != "" && MatriculaBox.Text != "" && CarreraBox.Text != "" && HoraBox.Text != "" && EntradaBox.Text != "" && AlumnoBox.Text != "")
+                    {
+                        formularioLLeno = true;
+                        entrada = true;
+                        SqlCommand command = new SqlCommand("INSERT INTO Colaborador (Nomina,Nombre,Cargo) Values (@Matricula,@Nombre,@Carrera)", connection);
+                        command.Parameters.Add("@Matricula", MatriculaBox.Text);
+                        command.Parameters.Add("@Nombre", NombreBox.Text);
+                        command.Parameters.Add("@Carrera", CarreraBox.Text);
+                        command.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        formularioLLeno = false;
+                    }
+                }
+            }
+
+            if (NombreBox.Text != "" && MatriculaBox.Text != "" && CarreraBox.Text != "" && HoraBox.Text != "" && EntradaBox.Text != "" && AlumnoBox.Text != "")
+            {
+                formularioLLeno = true;
+            }
+            else
+            {
+                formularioLLeno = false;
+            }
+
+
             if (formularioLLeno == true && entrada == true)
             {
                 this.Hide();
-                
-                SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
-                connection.Open();
-
-
                 SqlCommand command = new SqlCommand("INSERT INTO MakerSpace (Matricula,Nombre,Carrera,Alumno,FechaEntrada) Values (@Matricula,@Nombre,@Carrera,@Alumno,@FechaEntrada)", connection);
                 command.Parameters.Add("@Matricula", MatriculaBox.Text);
                 command.Parameters.Add("@Nombre", NombreBox.Text);
@@ -253,13 +296,12 @@ namespace SISCA.A
                 command.Parameters.Add("@FechaEntrada", now);
                 command.ExecuteNonQuery();
                 connection.Close();
-                EleccionAsunto asunto = new EleccionAsunto();
+                EleccionAsunto asunto = new EleccionAsunto(MatriculaBox.Text);
                 asunto.Show();
             }
             else if (formularioLLeno == true && entrada == false)
             {
-                SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
-                connection.Open();
+             
                 // SqlCommand command = new SqlCommand("INSERT INTO MakerSpace (FechaSalida) Values (@FechaSalida) WHERE Matricula (Matricula = '"+ MatriculaBox.Text + "')", connection);
                 SqlCommand command = new SqlCommand("UPDATE MakerSpace SET FechaSalida = @FechaSalida WHERE Matricula= '"+MatriculaBox.Text+"' AND FechaSalida IS NULL", connection);
 
@@ -278,8 +320,9 @@ namespace SISCA.A
             }
             else
             {
-                MessageBox.Show("Formulario Incompleto", "SISCA.A - Registro de usuarios");
+                MessageBox.Show("Formulario incompleto", "SISCA.A - Registro de usuarios");
             }
+            connection.Close();
         }
 
         private void Form1_Load(object sender, EventArgs e)
