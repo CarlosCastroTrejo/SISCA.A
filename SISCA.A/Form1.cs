@@ -287,7 +287,7 @@ namespace SISCA.A
 
             if (formularioLLeno == true && entrada == true)
             {
-                this.Hide();
+                this.Hide(); 
                 SqlCommand command = new SqlCommand("INSERT INTO MakerSpace (Matricula,Nombre,Carrera,Alumno,FechaEntrada) Values (@Matricula,@Nombre,@Carrera,@Alumno,@FechaEntrada)", connection);
                 command.Parameters.Add("@Matricula", MatriculaBox.Text);
                 command.Parameters.Add("@Nombre", NombreBox.Text);
@@ -295,7 +295,6 @@ namespace SISCA.A
                 command.Parameters.Add("@Alumno", AlumnoBox.Text);
                 command.Parameters.Add("@FechaEntrada", now);
                 command.ExecuteNonQuery();
-                connection.Close();
                 EleccionAsunto asunto = new EleccionAsunto(MatriculaBox.Text);
                 asunto.Show();
             }
@@ -307,7 +306,6 @@ namespace SISCA.A
 
                 command.Parameters.Add("@FechaSalida", now);
                 command.ExecuteNonQuery();
-                connection.Close();
                 NombreBox.Text = null;
                 MatriculaBox.Text = null;
                 AlumnoBox.Text = null;
