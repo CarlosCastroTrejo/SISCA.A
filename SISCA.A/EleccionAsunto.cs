@@ -14,6 +14,7 @@ namespace SISCA.A
 {
     public partial class EleccionAsunto : Form
     {
+        
         string asunto = null;
         string matricula;
         public EleccionAsunto(string matricula)
@@ -22,11 +23,7 @@ namespace SISCA.A
             InitializeComponent();
         }
 
-        private void EleccionAsunto_Load(object sender, EventArgs e)
-        {
-
-        }
-
+       
         private void label8_Click(object sender, EventArgs e)
         {
 
@@ -128,5 +125,13 @@ namespace SISCA.A
         {
 
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        
+
     }
 }
