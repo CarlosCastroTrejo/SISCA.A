@@ -17,7 +17,7 @@ namespace SISCA.A
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Administrador());
+            Application.Run(new Form1());
         }
     }
 }

@@ -19,7 +19,41 @@ namespace SISCA.A
         DateTime now = DateTime.Now;
         bool entrada = true;
         bool nuevo = false;
-        
+
+        private bool validarMatricula(string matricula)
+        {
+            for (int x = 1; x < matricula.Length; x++)
+            {
+                if (matricula[x] > 57 || matricula[x] < 48)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static bool validarCampo(string text)
+        {
+            int fin = text.Length;
+            if (text[text.Length - 1] == ' ')
+            {
+                fin -= 1;
+            }
+            for (int i = 0; i < fin; i++)
+            {
+                char b = text[i];
+                if ((int)text[i] >= 65 && (int)text[i] <= 97 || (int)text[i] >= 97 && (int)text[i] <= 122 || text[i] == 'ñ' || text[i] == 'í' || text[i] == 'ó' || text[i] == ' ')
+                {
+
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -46,6 +80,9 @@ namespace SISCA.A
             entrada = true;
             nuevo = false;
             formularioLLeno = false;
+            now = DateTime.Now; 
+            HoraBox.Text = now.ToString("F");
+
 
             NombreBox.Enabled = false;
             CarreraBox.Enabled = false;
@@ -59,7 +96,7 @@ namespace SISCA.A
                 connection.Open();
                 string output = null;
                 string output2 = null;
-                if (PrimeraLetra == 'A')
+                if (PrimeraLetra == 'A' && MatriculaBox.Text.Length<10  && validarMatricula(MatriculaBox.Text))
                 {
                     string query = "SELECT * FROM Alumno Where (Matricula = '" + MatriculaBox.Text + "')";
                     SqlCommand command = new SqlCommand(query, connection);
@@ -84,7 +121,6 @@ namespace SISCA.A
                     if (exist) 
                     {
                         AlumnoBox.Text = "Alumno";
-                        HoraBox.Text = now.ToString("F");
                         formularioLLeno = true;
                         command = new SqlCommand("SELECT * FROM MakerSpace Where (Matricula = '" + MatriculaBox.Text + "')", connection);
                         dataReader = command.ExecuteReader();
@@ -112,7 +148,7 @@ namespace SISCA.A
                         }
                         dataReader.Close();
                     }
-                    else if (!exist) // Si no se encuentra el usuario en la base de datos
+                    else if (!exist) // Si no se encuentra el usuario en la base de datos y su matricula esta bien escrita
                     {
                         if (MessageBox.Show("No exite usuario en el sistema, ¿Eres usuario nuevo?", "SISCA.A - Registro de usuarios", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
@@ -123,24 +159,22 @@ namespace SISCA.A
                             RegistraObliga.Visible = true;
                             NombreBox.Enabled = true;
                             CarreraBox.Enabled = true;
-                            AlumnoBox.Enabled = true;
+                            //AlumnoBox.Enabled = true;
 
                             AlumnoBox.Text = "Alumno";
                             EntradaBox.Text = "Entrada";
-                            DateTime now = DateTime.Now;
-                            HoraBox.Text = now.ToString("F");
                             nuevo = true;
                             
                         }
                         else
                         {
                             // Usuario apreto "no" como respuesta
-                            MessageBox.Show("Error en la matricula, intenta de nuevo", "SISCA.A - Registro de usuarios");
+                            MessageBox.Show("Hubo error en la matrícula, intenta de nuevo", "SISCA.A - Registro de usuarios");
                         }
                     }
                    
                 }
-                else if (PrimeraLetra == 'L')
+                else if (PrimeraLetra == 'L'  && MatriculaBox.Text.Length<10 && validarMatricula(MatriculaBox.Text))
                 {
                     string query = "SELECT * FROM Colaborador WHERE (Nomina = '" + MatriculaBox.Text + "')";
                     SqlCommand command = new SqlCommand(query, connection);
@@ -191,7 +225,7 @@ namespace SISCA.A
                         }
                         dataReader.Close();
                     }
-                    else if (!exist)
+                    else if (!exist && validarMatricula(MatriculaBox.Text))
                     {
 
                         if (MessageBox.Show("No exite usuario en el sistema, ¿Eres usuario nuevo?", "SISCA.A - Registro de alumnos", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -203,7 +237,7 @@ namespace SISCA.A
                             RegistraObliga.Visible = true;
                             NombreBox.Enabled = true;
                             CarreraBox.Enabled = true;
-                            AlumnoBox.Enabled = true;
+                           // AlumnoBox.Enabled = true;
 
                             AlumnoBox.Text = "Colaborador";
                             EntradaBox.Text = "Entrada";
@@ -222,14 +256,14 @@ namespace SISCA.A
                 }
                 else
                 {
-                    MessageBox.Show("Matricula incorrecta", "SISCA.A - Registro de alumnos");
+                    MessageBox.Show("Formato de matrícula erróneo", "SISCA.A - Registro de alumnos");
                 }
                 connection.Close();
 
             }
             else
             {
-                MessageBox.Show("No se escribio matricula", "SISCA.A - Registro de alumnos");
+                MessageBox.Show("No se escribió matrícula", "SISCA.A - Registro de alumnos");
             }
         }
 
@@ -239,43 +273,51 @@ namespace SISCA.A
             connection.Open();
             if (nuevo)
             {
-                if (MatriculaBox.Text[0] == 'A')
+                if (validarCampo(NombreBox.Text) && validarCampo(CarreraBox.Text))
                 {
-                    if (NombreBox.Text != "" && MatriculaBox.Text != "" && CarreraBox.Text != "" && HoraBox.Text != "" && EntradaBox.Text != "" && AlumnoBox.Text != "")
+                    if (MatriculaBox.Text[0] == 'A' && validarMatricula(MatriculaBox.Text))
                     {
-                        formularioLLeno = true;
-                        entrada = true;
-                        SqlCommand command = new SqlCommand("INSERT INTO Alumno (Matricula,Nombre,Carrera) Values (@Mat,@Nom,@Car)", connection);
-                        command.Parameters.Add("@Mat", MatriculaBox.Text);
-                        command.Parameters.Add("@Nom", NombreBox.Text);
-                        command.Parameters.Add("@Car", CarreraBox.Text);
-                        command.ExecuteNonQuery();
+                        if (NombreBox.Text != "" && MatriculaBox.Text != "" && CarreraBox.Text != "" && HoraBox.Text != "" && EntradaBox.Text != "" && AlumnoBox.Text != "")
+                        {
+                            formularioLLeno = true;
+                            entrada = true;
+                            SqlCommand command = new SqlCommand("INSERT INTO Alumno (Matricula,Nombre,Carrera) Values (@Mat,@Nom,@Car)", connection);
+                            command.Parameters.Add("@Mat", MatriculaBox.Text);
+                            command.Parameters.Add("@Nom", NombreBox.Text);
+                            command.Parameters.Add("@Car", CarreraBox.Text);
+                            command.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            formularioLLeno = false;
+                        }
                     }
-                    else
+                    else if (MatriculaBox.Text[0] == 'L' && validarMatricula(MatriculaBox.Text))
                     {
-                        formularioLLeno = false;
+                        if (NombreBox.Text != "" && MatriculaBox.Text != "" && CarreraBox.Text != "" && HoraBox.Text != "" && EntradaBox.Text != "" && AlumnoBox.Text != "")
+                        {
+                            formularioLLeno = true;
+                            entrada = true;
+                            SqlCommand command = new SqlCommand("INSERT INTO Colaborador (Nomina,Nombre,Cargo) Values (@Matricula,@Nombre,@Carrera)", connection);
+                            command.Parameters.Add("@Matricula", MatriculaBox.Text);
+                            command.Parameters.Add("@Nombre", NombreBox.Text);
+                            command.Parameters.Add("@Carrera", CarreraBox.Text);
+                            command.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            formularioLLeno = false;
+                        }
                     }
                 }
-                else if (MatriculaBox.Text[0] == 'L')
+                else
                 {
-                    if (NombreBox.Text != "" && MatriculaBox.Text != "" && CarreraBox.Text != "" && HoraBox.Text != "" && EntradaBox.Text != "" && AlumnoBox.Text != "")
-                    {
-                        formularioLLeno = true;
-                        entrada = true;
-                        SqlCommand command = new SqlCommand("INSERT INTO Colaborador (Nomina,Nombre,Cargo) Values (@Matricula,@Nombre,@Carrera)", connection);
-                        command.Parameters.Add("@Matricula", MatriculaBox.Text);
-                        command.Parameters.Add("@Nombre", NombreBox.Text);
-                        command.Parameters.Add("@Carrera", CarreraBox.Text);
-                        command.ExecuteNonQuery();
-                    }
-                    else
-                    {
-                        formularioLLeno = false;
-                    }
+                    MessageBox.Show("Formato de nombre o carrera / cargo erróneo", "SISCA.A - Registro de alumnos");
                 }
+
             }
 
-            if (NombreBox.Text != "" && MatriculaBox.Text != "" && CarreraBox.Text != "" && HoraBox.Text != "" && EntradaBox.Text != "" && AlumnoBox.Text != "")
+            if (NombreBox.Text != "" && MatriculaBox.Text != "" && CarreraBox.Text != "" && HoraBox.Text != "" && EntradaBox.Text != "" && AlumnoBox.Text != "" && validarCampo(NombreBox.Text) && validarCampo(CarreraBox.Text))
             {
                 formularioLLeno = true;
             }
@@ -287,22 +329,15 @@ namespace SISCA.A
 
             if (formularioLLeno == true && entrada == true)
             {
-                this.Hide(); 
-                SqlCommand command = new SqlCommand("INSERT INTO MakerSpace (Matricula,Nombre,Carrera,Alumno,FechaEntrada) Values (@Matricula,@Nombre,@Carrera,@Alumno,@FechaEntrada)", connection);
-                command.Parameters.Add("@Matricula", MatriculaBox.Text);
-                command.Parameters.Add("@Nombre", NombreBox.Text);
-                command.Parameters.Add("@Carrera", CarreraBox.Text);
-                command.Parameters.Add("@Alumno", AlumnoBox.Text);
-                command.Parameters.Add("@FechaEntrada", now);
-                command.ExecuteNonQuery();
-                EleccionAsunto asunto = new EleccionAsunto(MatriculaBox.Text);
+                this.Hide();
+                EleccionAsunto asunto = new EleccionAsunto(MatriculaBox.Text, NombreBox.Text, CarreraBox.Text, AlumnoBox.Text, now);
                 asunto.Show();
             }
             else if (formularioLLeno == true && entrada == false)
             {
-             
+
                 // SqlCommand command = new SqlCommand("INSERT INTO MakerSpace (FechaSalida) Values (@FechaSalida) WHERE Matricula (Matricula = '"+ MatriculaBox.Text + "')", connection);
-                SqlCommand command = new SqlCommand("UPDATE MakerSpace SET FechaSalida = @FechaSalida WHERE Matricula= '"+MatriculaBox.Text+"' AND FechaSalida IS NULL", connection);
+                SqlCommand command = new SqlCommand("UPDATE MakerSpace SET FechaSalida = @FechaSalida WHERE Matricula= '" + MatriculaBox.Text + "' AND FechaSalida IS NULL", connection);
 
                 command.Parameters.Add("@FechaSalida", now);
                 command.ExecuteNonQuery();
@@ -314,6 +349,14 @@ namespace SISCA.A
                 EntradaBox.Text = null;
                 HoraBox.Text = null;
                 MessageBox.Show("¡Salida registrada exitosamente!", "SISCA.A - Registro de usuarios");
+
+            }
+            else if (!formularioLLeno && (!validarCampo(NombreBox.Text) || !validarCampo(CarreraBox.Text)))
+            {
+
+            }
+            else if (!validarCampo(NombreBox.Text) || !validarCampo(CarreraBox.Text))
+            {
 
             }
             else

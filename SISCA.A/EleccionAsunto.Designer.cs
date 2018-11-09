@@ -43,6 +43,7 @@
             this.AsuntoLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.eleccionAsuntoBox = new System.Windows.Forms.CheckedListBox();
+            this.RegresarButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -156,7 +157,7 @@
             this.FirmaLabel.Name = "FirmaLabel";
             this.FirmaLabel.Size = new System.Drawing.Size(206, 20);
             this.FirmaLabel.TabIndex = 55;
-            this.FirmaLabel.Text = "Firma (matricula / nomina)";
+            this.FirmaLabel.Text = "Firma (matrícula / nómina)";
             this.FirmaLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.FirmaLabel.Click += new System.EventHandler(this.FirmaLabel_Click);
             // 
@@ -185,7 +186,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(40, 128);
+            this.label2.Location = new System.Drawing.Point(42, 205);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 20);
             this.label2.TabIndex = 44;
@@ -201,16 +202,30 @@
             this.eleccionAsuntoBox.ForeColor = System.Drawing.Color.Black;
             this.eleccionAsuntoBox.FormattingEnabled = true;
             this.eleccionAsuntoBox.Items.AddRange(new object[] {
-            "Asesoria",
+            "Asesoría",
             "Clase",
             "Proyecto",
             "Servicio becario",
             "Otro"});
-            this.eleccionAsuntoBox.Location = new System.Drawing.Point(44, 185);
+            this.eleccionAsuntoBox.Location = new System.Drawing.Point(46, 262);
             this.eleccionAsuntoBox.Name = "eleccionAsuntoBox";
             this.eleccionAsuntoBox.Size = new System.Drawing.Size(201, 154);
             this.eleccionAsuntoBox.TabIndex = 60;
             this.eleccionAsuntoBox.SelectedIndexChanged += new System.EventHandler(this.eleccionAsuntoBox_SelectedIndexChanged);
+            // 
+            // RegresarButton
+            // 
+            this.RegresarButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(20)))), ((int)(((byte)(137)))));
+            this.RegresarButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.RegresarButton.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RegresarButton.ForeColor = System.Drawing.Color.White;
+            this.RegresarButton.Location = new System.Drawing.Point(44, 128);
+            this.RegresarButton.Name = "RegresarButton";
+            this.RegresarButton.Size = new System.Drawing.Size(142, 35);
+            this.RegresarButton.TabIndex = 61;
+            this.RegresarButton.Text = "Regresar";
+            this.RegresarButton.UseVisualStyleBackColor = false;
+            this.RegresarButton.Click += new System.EventHandler(this.RegresarButton_Click);
             // 
             // EleccionAsunto
             // 
@@ -218,6 +233,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(956, 600);
+            this.Controls.Add(this.RegresarButton);
             this.Controls.Add(this.eleccionAsuntoBox);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.Continuar);
@@ -260,5 +276,6 @@
         private System.Windows.Forms.Label AsuntoLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckedListBox eleccionAsuntoBox;
+        private System.Windows.Forms.Button RegresarButton;
     }
 }

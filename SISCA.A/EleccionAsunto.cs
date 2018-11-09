@@ -16,10 +16,15 @@ namespace SISCA.A
     {
         
         string asunto = null;
-        string matricula;
-        public EleccionAsunto(string matricula)
+        string matricula,nombre,carrera,alumno;
+        DateTime now;
+        public EleccionAsunto(string matricula,string nombre, string carrera, string alumno, DateTime now)
         {
             this.matricula = matricula;
+            this.nombre = nombre;
+            this.carrera = carrera;
+            this.alumno = alumno;
+            this.now = now;
             InitializeComponent();
         }
 
@@ -59,11 +64,11 @@ namespace SISCA.A
             
             if (eleccionAsuntoBox.CheckedItems.Count > 1)
             {
-                MessageBox.Show("No se puede elegir mas de un asunto", "SISCA.A - Registro de usuarios");
+                MessageBox.Show("No se puede elegir más de un asunto", "SISCA.A - Registro de usuarios");
             }
             else if (eleccionAsuntoBox.CheckedItems.Count < 1)
             {
-                MessageBox.Show("Porvafor elige un asunto", "SISCA.A - Registro de usuarios");
+                MessageBox.Show("Porfavorr elige un asunto", "SISCA.A - Registro de usuarios");
             }
             
 
@@ -77,6 +82,16 @@ namespace SISCA.A
                         SqlCommand command = new SqlCommand("UPDATE MakerSpace SET Asunto = @Asunto WHERE Matricula= '" + FirmaBox.Text+ "' AND FechaSalida IS NULL AND Asunto IS NULL", connection);
                         command.Parameters.Add("@Asunto", AsuntoBox.Text);
                         command.ExecuteNonQuery();
+
+
+                         command = new SqlCommand("INSERT INTO MakerSpace (Matricula,Nombre,Carrera,Alumno,FechaEntrada) Values (@Matricula,@Nombre,@Carrera,@Alumno,@FechaEntrada)", connection);
+                        command.Parameters.Add("@Matricula", matricula);
+                        command.Parameters.Add("@Nombre", nombre);
+                        command.Parameters.Add("@Carrera", carrera);
+                        command.Parameters.Add("@Alumno", alumno);
+                        command.Parameters.Add("@FechaEntrada", now);
+                        command.ExecuteNonQuery();
+
                         Form1 principal = new Form1();
                         principal.Show();
                     }
@@ -91,7 +106,7 @@ namespace SISCA.A
                 }
                 else if (AsuntoBox.Text == "")
                 {
-                    MessageBox.Show("Porfavor teclea tu asunto especifico", "SISCA.A - Registro de usuarios");
+                    MessageBox.Show("Porfavor teclea tu asunto específico", "SISCA.A - Registro de usuarios");
                 }
             }
             else
@@ -104,6 +119,14 @@ namespace SISCA.A
                         SqlCommand command = new SqlCommand("UPDATE MakerSpace SET Asunto = @Asunto WHERE Matricula= '" + FirmaBox.Text + "' AND FechaSalida IS NULL AND Asunto IS NULL", connection);
                         command.Parameters.Add("@Asunto", asunto);
                         command.ExecuteNonQuery();
+
+                        command = new SqlCommand("INSERT INTO MakerSpace (Matricula,Nombre,Carrera,Alumno,FechaEntrada) Values (@Matricula,@Nombre,@Carrera,@Alumno,@FechaEntrada)", connection);
+                        command.Parameters.Add("@Matricula", matricula);
+                        command.Parameters.Add("@Nombre", nombre);
+                        command.Parameters.Add("@Carrera", carrera);
+                        command.Parameters.Add("@Alumno", alumno);
+                        command.Parameters.Add("@FechaEntrada", now);
+                        command.ExecuteNonQuery();
                         Form1 principal = new Form1();
                         principal.Show();
                     }
@@ -114,7 +137,7 @@ namespace SISCA.A
                 }
                 else if (FirmaBox.Text != matricula)
                 {
-                    MessageBox.Show("Porfavor teclea tu firma (matricula / nomina) correctamente", "SISCA.A - Registro de usuarios");
+                    MessageBox.Show("Porfavor teclea tu firma (matrícula / nómina) correctamente", "SISCA.A - Registro de usuarios");
                 }
             }
 
@@ -131,7 +154,11 @@ namespace SISCA.A
 
         }
 
-        
-
+        private void RegresarButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 principal = new Form1();
+            principal.Show();
+        }
     }
 }

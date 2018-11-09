@@ -128,7 +128,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(79, 18);
             this.label9.TabIndex = 16;
-            this.label9.Text = "¡Atencion! ";
+            this.label9.Text = "¡Atención! ";
             // 
             // RegistraObliga
             // 
@@ -333,9 +333,9 @@
             this.label3.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(41, 174);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 17);
+            this.label3.Size = new System.Drawing.Size(129, 17);
             this.label3.TabIndex = 24;
-            this.label3.Text = "Matricula";
+            this.label3.Text = "Matrícula / nómina";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
