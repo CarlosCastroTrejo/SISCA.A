@@ -68,7 +68,7 @@ namespace SISCA.A
             }
             else if (eleccionAsuntoBox.CheckedItems.Count < 1)
             {
-                MessageBox.Show("Porfavorr elige un asunto", "SISCA.A - Registro de usuarios");
+                MessageBox.Show("Porfavor elige un asunto", "SISCA.A - Registro de usuarios");
             }
             
 
@@ -79,12 +79,7 @@ namespace SISCA.A
                     if (MessageBox.Show("¡Ingreso registrado exitosamente!", "SISCA.A - Registro de alumnos", MessageBoxButtons.OK, MessageBoxIcon.Question) == DialogResult.OK)
                     {
                         this.Hide();
-                        SqlCommand command = new SqlCommand("UPDATE MakerSpace SET Asunto = @Asunto WHERE Matricula= '" + FirmaBox.Text+ "' AND FechaSalida IS NULL AND Asunto IS NULL", connection);
-                        command.Parameters.Add("@Asunto", AsuntoBox.Text);
-                        command.ExecuteNonQuery();
-
-
-                         command = new SqlCommand("INSERT INTO MakerSpace (Matricula,Nombre,Carrera,Alumno,FechaEntrada) Values (@Matricula,@Nombre,@Carrera,@Alumno,@FechaEntrada)", connection);
+                        SqlCommand command = new SqlCommand("INSERT INTO MakerSpace (Matricula,Nombre,Carrera,Alumno,FechaEntrada) Values (@Matricula,@Nombre,@Carrera,@Alumno,@FechaEntrada)", connection);
                         command.Parameters.Add("@Matricula", matricula);
                         command.Parameters.Add("@Nombre", nombre);
                         command.Parameters.Add("@Carrera", carrera);
@@ -92,6 +87,9 @@ namespace SISCA.A
                         command.Parameters.Add("@FechaEntrada", now);
                         command.ExecuteNonQuery();
 
+                        command = new SqlCommand("UPDATE MakerSpace SET Asunto = @Asunto WHERE Matricula= '" + FirmaBox.Text + "' AND FechaSalida IS NULL AND Asunto IS NULL", connection);
+                        command.Parameters.Add("@Asunto", AsuntoBox.Text);
+                        command.ExecuteNonQuery();
                         Form1 principal = new Form1();
                         principal.Show();
                     }
@@ -116,16 +114,16 @@ namespace SISCA.A
                     if (MessageBox.Show("¡Ingreso registrado exitosamente!", "SISCA.A - Registro de alumnos", MessageBoxButtons.OK, MessageBoxIcon.Question) == DialogResult.OK)
                     {
                         this.Hide();
-                        SqlCommand command = new SqlCommand("UPDATE MakerSpace SET Asunto = @Asunto WHERE Matricula= '" + FirmaBox.Text + "' AND FechaSalida IS NULL AND Asunto IS NULL", connection);
-                        command.Parameters.Add("@Asunto", asunto);
-                        command.ExecuteNonQuery();
-
-                        command = new SqlCommand("INSERT INTO MakerSpace (Matricula,Nombre,Carrera,Alumno,FechaEntrada) Values (@Matricula,@Nombre,@Carrera,@Alumno,@FechaEntrada)", connection);
+                        SqlCommand command = new SqlCommand("INSERT INTO MakerSpace (Matricula,Nombre,Carrera,Alumno,FechaEntrada) Values (@Matricula,@Nombre,@Carrera,@Alumno,@FechaEntrada)", connection);
                         command.Parameters.Add("@Matricula", matricula);
                         command.Parameters.Add("@Nombre", nombre);
                         command.Parameters.Add("@Carrera", carrera);
                         command.Parameters.Add("@Alumno", alumno);
                         command.Parameters.Add("@FechaEntrada", now);
+                        command.ExecuteNonQuery();
+
+                        command = new SqlCommand("UPDATE MakerSpace SET Asunto = @Asunto WHERE Matricula= '" + FirmaBox.Text + "' AND FechaSalida IS NULL AND Asunto IS NULL", connection);
+                        command.Parameters.Add("@Asunto", asunto);
                         command.ExecuteNonQuery();
                         Form1 principal = new Form1();
                         principal.Show();

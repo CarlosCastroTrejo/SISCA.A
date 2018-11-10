@@ -18,7 +18,9 @@ namespace SISCA.A
          bool formularioLLeno = false; // Variable booleana para indentificar si el formulario esta completo
         DateTime now = DateTime.Now;
         bool entrada = true;
+        bool admin = false;
         bool nuevo = false;
+        string contrasena = null;
 
         private bool validarMatricula(string matricula)
         {
@@ -76,31 +78,57 @@ namespace SISCA.A
             CarreraObliga.Visible = false;
             AlumnoObliga.Visible = false;
             RegistraObliga.Visible = false;
+            ContraLabel.Visible = false;
+            ContraObli.Visible = false;
+            ContraBox.Visible = false;
             bool exist = true;
             entrada = true;
             nuevo = false;
             formularioLLeno = false;
             now = DateTime.Now; 
             HoraBox.Text = now.ToString("F");
+            admin = true;
+            contrasena = null;
 
 
             NombreBox.Enabled = false;
             CarreraBox.Enabled = false;
             AlumnoBox.Enabled = false;
 
+
             if (MatriculaBox.Text.Length != 0)
             {
+                string output = null;
+                string output2 = null;
                 // Se realiza la conexion con la base de datos
                 char PrimeraLetra = char.ToUpper(MatriculaBox.Text[0]);
                 SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
                 connection.Open();
-                string output = null;
-                string output2 = null;
-                if (PrimeraLetra == 'A' && MatriculaBox.Text.Length<10  && validarMatricula(MatriculaBox.Text))
+               
+                string query =  "SELECT * FROM Administrador Where (Nomina = '" + MatriculaBox.Text + "')";
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
                 {
-                    string query = "SELECT * FROM Alumno Where (Matricula = '" + MatriculaBox.Text + "')";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    SqlDataReader dataReader = command.ExecuteReader();
+                    output = output + dataReader.GetValue(1);
+                    NombreBox.Text= output;
+                    output = null;
+                    output = output + dataReader.GetValue(2);
+                    contrasena = output;
+                }
+                dataReader.Close();
+                if (output == null || output == "")
+                {
+                    admin = false;
+                }
+
+
+                if (PrimeraLetra == 'A' && MatriculaBox.Text.Length < 10 && validarMatricula(MatriculaBox.Text))
+                {
+                    output = null;
+                    query = "SELECT * FROM Alumno Where (Matricula = '" + MatriculaBox.Text + "')";
+                    command = new SqlCommand(query, connection);
+                    dataReader = command.ExecuteReader();
                     while (dataReader.Read())
                     {
                         output = output + dataReader.GetValue(1);
@@ -109,16 +137,15 @@ namespace SISCA.A
                         output = output + dataReader.GetValue(2);
                         CarreraBox.Text = output;
                     }
-                    dataReader.Close(); 
+                    dataReader.Close();
 
                     // Checar el regreso del reader para asegurar que existe en la base datos
                     if (output == null || output == "")
                     {
                         exist = false;
                     }
-
                     // Si si se encuentra el usuario en la base de datos de Alumno
-                    if (exist) 
+                    if (exist)
                     {
                         AlumnoBox.Text = "Alumno";
                         formularioLLeno = true;
@@ -137,12 +164,12 @@ namespace SISCA.A
                         {
                             EntradaBox.Text = "Entrada";
                         }
-                        else if (output != null && (output2 == null || output2==""))
+                        else if (output != null && (output2 == null || output2 == ""))
                         {
                             EntradaBox.Text = "Salida";
                             entrada = false;
                         }
-                        else 
+                        else
                         {
                             EntradaBox.Text = "Entrada";
                         }
@@ -164,7 +191,7 @@ namespace SISCA.A
                             AlumnoBox.Text = "Alumno";
                             EntradaBox.Text = "Entrada";
                             nuevo = true;
-                            
+
                         }
                         else
                         {
@@ -172,14 +199,25 @@ namespace SISCA.A
                             MessageBox.Show("Hubo error en la matrícula, intenta de nuevo", "SISCA.A - Registro de usuarios");
                         }
                     }
-                   
-                }
-                else if (PrimeraLetra == 'L'  && MatriculaBox.Text.Length<10 && validarMatricula(MatriculaBox.Text))
-                {
-                    string query = "SELECT * FROM Colaborador WHERE (Nomina = '" + MatriculaBox.Text + "')";
-                    SqlCommand command = new SqlCommand(query, connection);
 
-                    SqlDataReader dataReader = command.ExecuteReader();
+                }
+                else if (PrimeraLetra == 'L' && MatriculaBox.Text.Length < 10 && validarMatricula(MatriculaBox.Text) && admin)
+                {
+                    ContraLabel.Visible = true;
+                    ContraObli.Visible = true;
+                    ContraBox.Visible = true;
+                    CarreraBox.Text = "Administador";
+                    AlumnoBox.Text = "Colaborador";
+                    HoraBox.Text = now.ToString("F");
+
+                }
+                else if (PrimeraLetra == 'L' && MatriculaBox.Text.Length < 10 && validarMatricula(MatriculaBox.Text))
+                {
+                    output = null;
+                    query = "SELECT * FROM Colaborador WHERE (Nomina = '" + MatriculaBox.Text + "')";
+                    command = new SqlCommand(query, connection);
+
+                    dataReader = command.ExecuteReader();
                     while (dataReader.Read())
                     {
                         output = output + dataReader.GetValue(1);
@@ -237,14 +275,14 @@ namespace SISCA.A
                             RegistraObliga.Visible = true;
                             NombreBox.Enabled = true;
                             CarreraBox.Enabled = true;
-                           // AlumnoBox.Enabled = true;
+                            // AlumnoBox.Enabled = true;
 
                             AlumnoBox.Text = "Colaborador";
                             EntradaBox.Text = "Entrada";
                             DateTime now = DateTime.Now;
                             HoraBox.Text = now.ToString("F");
                             nuevo = true;
-                            
+
                         }
                         else
                         {
@@ -326,6 +364,19 @@ namespace SISCA.A
                 formularioLLeno = false;
             }
 
+            if (admin == true)
+            {
+                if (ContraBox.Text == contrasena && ContraBox.Text != "")
+                {
+                    this.Hide();
+                    Administrador admin = new Administrador();                    
+                    admin.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Contraseña incorrecta ", "SISCA.A - Registro de usuarios");
+                }
+            }
 
             if (formularioLLeno == true && entrada == true)
             {
@@ -356,6 +407,10 @@ namespace SISCA.A
 
             }
             else if (!validarCampo(NombreBox.Text) || !validarCampo(CarreraBox.Text))
+            {
+
+            }
+            else if (admin && ContraBox.Text == contrasena)
             {
 
             }

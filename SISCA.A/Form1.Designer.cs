@@ -56,6 +56,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.ContraLabel = new System.Windows.Forms.Label();
+            this.ContraBox = new System.Windows.Forms.TextBox();
+            this.ContraObli = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -361,12 +364,48 @@
             this.panel2.Size = new System.Drawing.Size(334, 52);
             this.panel2.TabIndex = 38;
             // 
+            // ContraLabel
+            // 
+            this.ContraLabel.AutoSize = true;
+            this.ContraLabel.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ContraLabel.Location = new System.Drawing.Point(629, 172);
+            this.ContraLabel.Name = "ContraLabel";
+            this.ContraLabel.Size = new System.Drawing.Size(84, 17);
+            this.ContraLabel.TabIndex = 44;
+            this.ContraLabel.Text = "Contraseña";
+            this.ContraLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ContraLabel.Visible = false;
+            // 
+            // ContraBox
+            // 
+            this.ContraBox.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ContraBox.Location = new System.Drawing.Point(632, 194);
+            this.ContraBox.Name = "ContraBox";
+            this.ContraBox.Size = new System.Drawing.Size(265, 24);
+            this.ContraBox.TabIndex = 45;
+            this.ContraBox.Visible = false;
+            // 
+            // ContraObli
+            // 
+            this.ContraObli.AutoSize = true;
+            this.ContraObli.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ContraObli.Location = new System.Drawing.Point(811, 174);
+            this.ContraObli.Name = "ContraObli";
+            this.ContraObli.Size = new System.Drawing.Size(86, 18);
+            this.ContraObli.TabIndex = 46;
+            this.ContraObli.Text = "Obligatorio";
+            this.ContraObli.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ContraObli.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(956, 600);
+            this.Controls.Add(this.ContraObli);
+            this.Controls.Add(this.ContraLabel);
+            this.Controls.Add(this.ContraBox);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RegistraObliga);
@@ -436,6 +475,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label ContraLabel;
+        public System.Windows.Forms.TextBox ContraBox;
+        private System.Windows.Forms.Label ContraObli;
     }
 }
 
