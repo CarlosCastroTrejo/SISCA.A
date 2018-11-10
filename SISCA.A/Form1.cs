@@ -22,8 +22,12 @@ namespace SISCA.A
         bool nuevo = false;
         string contrasena = null;
 
-        private bool validarMatricula(string matricula)
+        public static bool validarMatricula(string matricula)
         {
+            if (matricula.Length > 9)
+            {
+                return false;
+            }
             for (int x = 1; x < matricula.Length; x++)
             {
                 if (matricula[x] > 57 || matricula[x] < 48)

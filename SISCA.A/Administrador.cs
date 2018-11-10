@@ -15,27 +15,137 @@ namespace SISCA.A
 {
     public partial class Administrador : Form
     {
+        
         public Administrador()
         {
             InitializeComponent();
+            NuevoAdminLabel.Visible = false;
+            NominaAdminLabel.Visible = false;
+            NominObli.Visible = false;
+            NominaAdminBox.Visible = false;
+            NombreAdminLabel.Visible = false;
+            NombreObli.Visible = false;
+            NombreAdminBox.Visible = false;
+            ContrasenaAdminLabel.Visible = false;
+            ContraOblig.Visible = false;
+            ContrasenaAdminBox.Visible = false;
         }
 
         private void Continuar_Click(object sender, EventArgs e)
         {
-            SqlConnection con;
-            SqlCommand cmd;
-            SqlDataAdapter da;
-            DataSet ds;
+            this.Hide();
+            Form1 principal = new Form1();
+            principal.Show();
+        }
 
-            con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
-            cmd = new SqlCommand("SELECT * FROM MakerSpace", con);
-            con.Open();
-            da = new SqlDataAdapter(cmd);
-            ds = new DataSet();
-            da.Fill(ds);
-           
-            ds.WriteXml(@"c:/Users/carlosemilianocastro/Desktop/File_.xls");
+        private void label3_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+
+            if (EleccionAdminBox.CheckedItems.Count > 1)
+            {
+                MessageBox.Show("No se puede elegir más de un asunto", "SISCA.A - Registro de usuarios");
+            }
+            else if (EleccionAdminBox.CheckedItems.Count < 1)
+            {
+                MessageBox.Show("Porfavor elige un asunto", "SISCA.A - Registro de usuarios");
+            }
+            else
+            {
+                SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
+                connection.Open();
+
+                SqlCommand command;
+                SqlDataAdapter da;
+                DataSet ds;
+                DateTime now;
+
+                if (EleccionAdminBox.GetItemChecked(0) == true)
+                {
+                    command = new SqlCommand("SELECT * FROM MakerSpace", connection);
+                    da = new SqlDataAdapter(command);
+                    ds = new DataSet();
+                    da.Fill(ds);
+                    now = DateTime.Now;
+                    now.ToString("m,M");
+                    ds.WriteXml(@"c:/Users/carlosemilianocastro/Desktop/RegistroUsuarios_" + now.ToString("d")+".xls");
+                    MessageBox.Show("Archivo guardado exitosamente con el nombre de:  RegistroUsuarios_" + now.ToString("d"), "SISCA.A - Registro de usuarios");
+                }
+                else if (EleccionAdminBox.GetItemChecked(1) == true)
+                {
+                    if (ContrasenaAdminBox.Text != "" && NominaAdminBox.Text != "" && NombreAdminBox.Text != "")
+                    {
+                        if (Form1.validarMatricula(NominaAdminBox.Text) && NominaAdminBox.Text[0] == 'L')
+                        {
+                            if (Form1.validarCampo(NombreAdminBox.Text))
+                            {
+
+                                command = new SqlCommand("INSERT INTO Administrador (Nomina,Nombre,Contrasena) Values (@Matricula,@Nombre,@Contrasena)", connection);
+                                command.Parameters.Add("@Matricula", NominaAdminBox.Text);
+                                command.Parameters.Add("@Nombre", NombreAdminBox.Text);
+                                command.Parameters.Add("@Contrasena", ContrasenaAdminBox.Text);
+                                command.ExecuteNonQuery();
+                                MessageBox.Show("Registro de nuevo administrador exitoso", "SISCA.A - Registro de usuarios");
+                                NominaAdminBox.Text = "";
+                                NombreAdminBox.Text = "";
+                                ContrasenaAdminBox.Text = "";
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Formato de nombre erróneo", "SISCA.A - Registro de usuarios");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Formato de nómina erróneo", "SISCA.A - Registro de usuarios");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Formulario incompleto", "SISCA.A - Registro de usuarios");
+                    }
+                }
+                connection.Close();
+            }
+        }
+
+        private void EleccionAdminBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (EleccionAdminBox.GetItemChecked(1) == true)
+            {
+                NuevoAdminLabel.Visible = true;
+                NominaAdminLabel.Visible = true;
+                NominObli.Visible = true;
+                NominaAdminBox.Visible = true;
+                NominaAdminBox.Text = "";
+                NombreAdminLabel.Visible = true;
+                NombreObli.Visible = true;
+                NombreAdminBox.Visible = true;
+                NombreAdminBox.Text = "";
+                ContrasenaAdminLabel.Visible = true;
+                ContraOblig.Visible = true;
+                ContrasenaAdminBox.Visible = true;
+                ContrasenaAdminBox.Text = "";
+            }
+            else
+            {
+                NuevoAdminLabel.Visible = false;
+                NominaAdminLabel.Visible = false;
+                NominObli.Visible = false;
+                NominaAdminBox.Visible = false;
+                NombreAdminLabel.Visible = false;
+                NombreObli.Visible = false;
+                NombreAdminBox.Visible = false;
+                ContrasenaAdminLabel.Visible = false;
+                ContraOblig.Visible = false;
+                ContrasenaAdminBox.Visible = false;
+            }
 
         }
     }
