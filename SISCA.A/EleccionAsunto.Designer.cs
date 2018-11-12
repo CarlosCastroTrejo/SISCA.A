@@ -148,6 +148,7 @@
             this.FirmaBox.Name = "FirmaBox";
             this.FirmaBox.Size = new System.Drawing.Size(295, 27);
             this.FirmaBox.TabIndex = 56;
+            this.FirmaBox.TextChanged += new System.EventHandler(this.FirmaBox_TextChanged);
             // 
             // FirmaLabel
             // 

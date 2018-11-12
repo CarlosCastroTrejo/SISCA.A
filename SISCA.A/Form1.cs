@@ -21,10 +21,11 @@ namespace SISCA.A
         bool admin = false;
         bool nuevo = false;
         string contrasena = null;
+        char PrimeraLetra ;
 
         public static bool validarMatricula(string matricula)
         {
-            if (matricula.Length > 9)
+            if (matricula.Length !=9)
             {
                 return false;
             }
@@ -41,6 +42,10 @@ namespace SISCA.A
         public static bool validarCampo(string text)
         {
             int fin = text.Length;
+            if (text.Length == 0)
+            {
+                return false;
+            }
             if (text[text.Length - 1] == ' ')
             {
                 fin -= 1;
@@ -80,7 +85,6 @@ namespace SISCA.A
             AlumnoBox.Text = null;
             NombreObliga.Visible = false;
             CarreraObliga.Visible = false;
-            AlumnoObliga.Visible = false;
             RegistraObliga.Visible = false;
             ContraLabel.Visible = false;
             ContraObli.Visible = false;
@@ -105,7 +109,7 @@ namespace SISCA.A
                 string output = null;
                 string output2 = null;
                 // Se realiza la conexion con la base de datos
-                char PrimeraLetra = char.ToUpper(MatriculaBox.Text[0]);
+                PrimeraLetra = char.ToUpper(MatriculaBox.Text[0]);
                 SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
                 connection.Open();
                
@@ -129,6 +133,13 @@ namespace SISCA.A
 
                 if (PrimeraLetra == 'A' && MatriculaBox.Text.Length < 10 && validarMatricula(MatriculaBox.Text))
                 {
+                    string mat ="A";
+                    for (int x = 1; x < MatriculaBox.Text.Length; x++)
+                    {
+                        mat += MatriculaBox.Text[x];
+                    }
+
+                    MatriculaBox.Text = mat;
                     output = null;
                     query = "SELECT * FROM Alumno Where (Matricula = '" + MatriculaBox.Text + "')";
                     command = new SqlCommand(query, connection);
@@ -179,14 +190,13 @@ namespace SISCA.A
                         }
                         dataReader.Close();
                     }
-                    else if (!exist) // Si no se encuentra el usuario en la base de datos y su matricula esta bien escrita
+                    else if (!exist && validarMatricula(MatriculaBox.Text)) // Si no se encuentra el usuario en la base de datos y su matricula esta bien escrita
                     {
                         if (MessageBox.Show("No exite usuario en el sistema, ¿Eres usuario nuevo?", "SISCA.A - Registro de usuarios", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             // Usuario apreto "si" como respuesta
                             NombreObliga.Visible = true;
                             CarreraObliga.Visible = true;
-                            AlumnoObliga.Visible = true;
                             RegistraObliga.Visible = true;
                             NombreBox.Enabled = true;
                             CarreraBox.Enabled = true;
@@ -207,6 +217,12 @@ namespace SISCA.A
                 }
                 else if (PrimeraLetra == 'L' && MatriculaBox.Text.Length < 10 && validarMatricula(MatriculaBox.Text) && admin)
                 {
+                    string mat = "L";
+                    for (int x = 1; x < MatriculaBox.Text.Length; x++)
+                    {
+                        mat += MatriculaBox.Text[x];
+                    }
+                    MatriculaBox.Text = mat;
                     ContraLabel.Visible = true;
                     ContraObli.Visible = true;
                     ContraBox.Visible = true;
@@ -217,6 +233,12 @@ namespace SISCA.A
                 }
                 else if (PrimeraLetra == 'L' && MatriculaBox.Text.Length < 10 && validarMatricula(MatriculaBox.Text))
                 {
+                    string mat = "L";
+                    for (int x = 1; x < MatriculaBox.Text.Length; x++)
+                    {
+                        mat += MatriculaBox.Text[x];
+                    }
+                    MatriculaBox.Text = mat;
                     output = null;
                     query = "SELECT * FROM Colaborador WHERE (Nomina = '" + MatriculaBox.Text + "')";
                     command = new SqlCommand(query, connection);
@@ -275,7 +297,6 @@ namespace SISCA.A
                             // Usuario apreto "si" como respuesta
                             NombreObliga.Visible = true;
                             CarreraObliga.Visible = true;
-                            AlumnoObliga.Visible = true;
                             RegistraObliga.Visible = true;
                             NombreBox.Enabled = true;
                             CarreraBox.Enabled = true;
@@ -317,7 +338,7 @@ namespace SISCA.A
             {
                 if (validarCampo(NombreBox.Text) && validarCampo(CarreraBox.Text))
                 {
-                    if (MatriculaBox.Text[0] == 'A' && validarMatricula(MatriculaBox.Text))
+                    if (PrimeraLetra == 'A' && validarMatricula(MatriculaBox.Text))
                     {
                         if (NombreBox.Text != "" && MatriculaBox.Text != "" && CarreraBox.Text != "" && HoraBox.Text != "" && EntradaBox.Text != "" && AlumnoBox.Text != "")
                         {
@@ -334,7 +355,7 @@ namespace SISCA.A
                             formularioLLeno = false;
                         }
                     }
-                    else if (MatriculaBox.Text[0] == 'L' && validarMatricula(MatriculaBox.Text))
+                    else if (PrimeraLetra == 'L' && validarMatricula(MatriculaBox.Text))
                     {
                         if (NombreBox.Text != "" && MatriculaBox.Text != "" && CarreraBox.Text != "" && HoraBox.Text != "" && EntradaBox.Text != "" && AlumnoBox.Text != "")
                         {

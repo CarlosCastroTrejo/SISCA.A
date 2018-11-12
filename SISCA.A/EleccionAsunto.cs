@@ -61,7 +61,15 @@ namespace SISCA.A
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
             connection.Open();
-            
+
+            string mat = "A";
+            for (int x = 1; x < FirmaBox.Text.Length; x++)
+            {
+                mat += FirmaBox.Text[x];
+            }
+
+            FirmaBox.Text = mat;
+
             if (eleccionAsuntoBox.CheckedItems.Count > 1)
             {
                 MessageBox.Show("No se puede elegir más de un asunto", "SISCA.A - Registro de usuarios");
@@ -125,8 +133,12 @@ namespace SISCA.A
                         command = new SqlCommand("UPDATE MakerSpace SET Asunto = @Asunto WHERE Matricula= '" + FirmaBox.Text + "' AND FechaSalida IS NULL AND Asunto IS NULL", connection);
                         command.Parameters.Add("@Asunto", asunto);
                         command.ExecuteNonQuery();
+
                         Form1 principal = new Form1();
                         principal.Show();
+
+
+
                     }
                 }
                 else if (FirmaBox.Text == "")
@@ -140,6 +152,11 @@ namespace SISCA.A
             }
 
             connection.Close();
+        }
+
+        private void FirmaBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void FirmaLabel_Click(object sender, EventArgs e)

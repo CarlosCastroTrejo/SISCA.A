@@ -40,7 +40,6 @@
             this.Continuar = new System.Windows.Forms.Button();
             this.Llenar = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.AlumnoObliga = new System.Windows.Forms.Label();
             this.CarreraObliga = new System.Windows.Forms.Label();
             this.EntradaBox = new System.Windows.Forms.TextBox();
             this.EntradaB = new System.Windows.Forms.Label();
@@ -196,18 +195,6 @@
             this.label10.Size = new System.Drawing.Size(261, 17);
             this.label10.TabIndex = 18;
             this.label10.Text = "Confirma que tus datos sean correctos";
-            // 
-            // AlumnoObliga
-            // 
-            this.AlumnoObliga.AutoSize = true;
-            this.AlumnoObliga.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AlumnoObliga.Location = new System.Drawing.Point(811, 375);
-            this.AlumnoObliga.Name = "AlumnoObliga";
-            this.AlumnoObliga.Size = new System.Drawing.Size(86, 18);
-            this.AlumnoObliga.TabIndex = 42;
-            this.AlumnoObliga.Text = "Obligatorio";
-            this.AlumnoObliga.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.AlumnoObliga.Visible = false;
             // 
             // CarreraObliga
             // 
@@ -416,7 +403,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Llenar);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.AlumnoObliga);
             this.Controls.Add(this.MatriculaBox);
             this.Controls.Add(this.CarreraObliga);
             this.Controls.Add(this.label4);
@@ -459,7 +445,6 @@
         private System.Windows.Forms.Button Continuar;
         private System.Windows.Forms.Button Llenar;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label AlumnoObliga;
         private System.Windows.Forms.Label CarreraObliga;
         private System.Windows.Forms.TextBox EntradaBox;
         private System.Windows.Forms.Label EntradaB;
