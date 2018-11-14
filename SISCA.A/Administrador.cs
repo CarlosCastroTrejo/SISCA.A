@@ -72,9 +72,8 @@ namespace SISCA.A
                     ds = new DataSet();
                     da.Fill(ds);
                     now = DateTime.Now;
-                    now.ToString("m,M");
-                    ds.WriteXml(@"c:/Users/carlosemilianocastro/Desktop/RegistroUsuarios.xls");
-                    MessageBox.Show("Archivo guardado exitosamente con el nombre de:  RegistroUsuarios_" + now.ToString("d"), "SISCA.A - Registro de usuarios");
+                    ds.WriteXml(@"c:/Users/carlosemilianocastro/Desktop/RegistroUsuarios_"+now.ToString("m,M")+".xls");
+                    MessageBox.Show("Archivo guardado exitosamente con el nombre de:  RegistroUsuarios_" + now.ToString("m,M"), "SISCA.A - Registro de usuarios");
                 }
                 else if (EleccionAdminBox.GetItemChecked(1) == true)
                 {

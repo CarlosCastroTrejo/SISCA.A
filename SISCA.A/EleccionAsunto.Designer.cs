@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EleccionAsunto));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
@@ -44,16 +43,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.eleccionAsuntoBox = new System.Windows.Forms.CheckedListBox();
             this.RegresarButton = new System.Windows.Forms.Button();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(126)))), ((int)(((byte)(127)))));
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -61,19 +63,9 @@
             this.panel1.Size = new System.Drawing.Size(956, 100);
             this.panel1.TabIndex = 2;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(507, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(437, 33);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Registro de usuarios MakerSpace";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(24, 12);
             this.pictureBox1.Name = "pictureBox1";
@@ -130,7 +122,6 @@
             // Continuar
             // 
             this.Continuar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(20)))), ((int)(((byte)(137)))));
-            this.Continuar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Continuar.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Continuar.ForeColor = System.Drawing.Color.White;
             this.Continuar.Location = new System.Drawing.Point(602, 518);
@@ -217,16 +208,26 @@
             // RegresarButton
             // 
             this.RegresarButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(20)))), ((int)(((byte)(137)))));
-            this.RegresarButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.RegresarButton.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RegresarButton.ForeColor = System.Drawing.Color.White;
             this.RegresarButton.Location = new System.Drawing.Point(44, 128);
             this.RegresarButton.Name = "RegresarButton";
-            this.RegresarButton.Size = new System.Drawing.Size(142, 35);
+            this.RegresarButton.Size = new System.Drawing.Size(154, 40);
             this.RegresarButton.TabIndex = 61;
             this.RegresarButton.Text = "Regresar";
             this.RegresarButton.UseVisualStyleBackColor = false;
             this.RegresarButton.Click += new System.EventHandler(this.RegresarButton_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(722, 6);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(222, 88);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 3;
+            this.pictureBox3.TabStop = false;
             // 
             // EleccionAsunto
             // 
@@ -251,11 +252,11 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SISCA.A";
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,7 +265,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label10;
@@ -278,5 +278,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckedListBox eleccionAsuntoBox;
         private System.Windows.Forms.Button RegresarButton;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

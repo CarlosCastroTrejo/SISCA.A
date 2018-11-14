@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Administrador));
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.AdminLabel = new System.Windows.Forms.Label();
@@ -47,25 +46,17 @@
             this.NominObli = new System.Windows.Forms.Label();
             this.NombreObli = new System.Windows.Forms.Label();
             this.ContraOblig = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(507, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(437, 33);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Registro de usuarios MakerSpace";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(126)))), ((int)(((byte)(127)))));
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -75,6 +66,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(24, 12);
             this.pictureBox1.Name = "pictureBox1";
@@ -97,7 +89,6 @@
             // SalirButton
             // 
             this.SalirButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(20)))), ((int)(((byte)(137)))));
-            this.SalirButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SalirButton.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SalirButton.ForeColor = System.Drawing.Color.White;
             this.SalirButton.Location = new System.Drawing.Point(44, 518);
@@ -123,12 +114,11 @@
             // EjecutarBotton
             // 
             this.EjecutarBotton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(20)))), ((int)(((byte)(137)))));
-            this.EjecutarBotton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.EjecutarBotton.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EjecutarBotton.ForeColor = System.Drawing.Color.White;
             this.EjecutarBotton.Location = new System.Drawing.Point(44, 334);
             this.EjecutarBotton.Name = "EjecutarBotton";
-            this.EjecutarBotton.Size = new System.Drawing.Size(164, 31);
+            this.EjecutarBotton.Size = new System.Drawing.Size(174, 38);
             this.EjecutarBotton.TabIndex = 61;
             this.EjecutarBotton.Text = "Ejecutar";
             this.EjecutarBotton.UseVisualStyleBackColor = false;
@@ -262,6 +252,17 @@
             this.ContraOblig.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ContraOblig.Visible = false;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(722, 6);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(222, 88);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 3;
+            this.pictureBox3.TabStop = false;
+            // 
             // Administrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -292,16 +293,14 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SISCA.A";
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label AdminLabel;
@@ -319,5 +318,6 @@
         private System.Windows.Forms.Label NominObli;
         private System.Windows.Forms.Label NombreObli;
         private System.Windows.Forms.Label ContraOblig;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

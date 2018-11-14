@@ -61,8 +61,17 @@ namespace SISCA.A
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
             connection.Open();
+            string mat="";
 
-            string mat = "A";
+            if (matricula[0] == 'A' || matricula[0] == 'a')
+            {
+                mat = "A";
+            }
+            else if (matricula[0] == 'L' || matricula[0] == 'l')
+            {
+                mat = "L";
+            }
+
             for (int x = 1; x < FirmaBox.Text.Length; x++)
             {
                 mat += FirmaBox.Text[x];
@@ -76,7 +85,7 @@ namespace SISCA.A
             }
             else if (eleccionAsuntoBox.CheckedItems.Count < 1)
             {
-                MessageBox.Show("Porfavor elige un asunto", "SISCA.A - Registro de usuarios");
+                MessageBox.Show("Por favor elige un asunto", "SISCA.A - Registro de usuarios");
             }
             
 
@@ -104,7 +113,7 @@ namespace SISCA.A
                 }
                 else if (FirmaBox.Text == "")
                 {
-                    MessageBox.Show("Porfavor firma tu entrada", "SISCA.A - Registro de usuarios");
+                    MessageBox.Show("Por favor firma tu entrada", "SISCA.A - Registro de usuarios");
                 }
                 else if (FirmaBox.Text != matricula)
                 {
@@ -112,7 +121,7 @@ namespace SISCA.A
                 }
                 else if (AsuntoBox.Text == "")
                 {
-                    MessageBox.Show("Porfavor teclea tu asunto específico", "SISCA.A - Registro de usuarios");
+                    MessageBox.Show("Por favor teclea tu asunto específico", "SISCA.A - Registro de usuarios");
                 }
             }
             else
@@ -143,11 +152,12 @@ namespace SISCA.A
                 }
                 else if (FirmaBox.Text == "")
                 {
-                    MessageBox.Show("Porfavor firma tu entrada", "SISCA.A - Registro de usuarios");
+                    MessageBox.Show("Por favor firma tu entrada", "SISCA.A - Registro de usuarios");
                 }
                 else if (FirmaBox.Text != matricula)
                 {
-                    MessageBox.Show("Porfavor teclea tu firma (matrícula / nómina) correctamente", "SISCA.A - Registro de usuarios");
+                    MessageBox.Show("Por favor teclea tu firma (matrícula / nómina) correctamente", "SISCA.A - Registro de usuarios");
+                    FirmaBox.Text = null;
                 }
             }
 
