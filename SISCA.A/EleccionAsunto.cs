@@ -12,12 +12,14 @@ using System.Data.SqlClient;
 
 namespace SISCA.A
 {
+    // Windows Forms que representa la interfaz de eleccion de asunto del sistema
     public partial class EleccionAsunto : Form
     {
-        
         string asunto = null;
         string matricula,nombre,carrera,alumno;
         DateTime now;
+
+        // Constructor del Form con parametros para registrar en base de datos
         public EleccionAsunto(string matricula,string nombre, string carrera, string alumno, DateTime now)
         {
             this.matricula = matricula;
@@ -59,6 +61,7 @@ namespace SISCA.A
 
         private void Continuar_Click(object sender, EventArgs e)
         {
+            // Conexion a la base de datos de MakerSpace
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
             connection.Open();
             string mat="";

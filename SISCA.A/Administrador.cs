@@ -13,6 +13,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace SISCA.A
 {
+    // Windows Forms que representa la interfaz de administrador del sistema
     public partial class Administrador : Form
     {
         
@@ -31,6 +32,7 @@ namespace SISCA.A
             ContrasenaAdminBox.Visible = false;
         }
 
+        // Metodo que se ejecuta al hacer click en Salir
         private void Continuar_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -57,6 +59,7 @@ namespace SISCA.A
             }
             else
             {
+                // Conexion a la base de datos de MakerSpace para desplegar excel 
                 SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\Mac\Home\Documents\Tec de Monterrey\3er Semestre\Fundamentos de Ingeniería de Software\SISCA.A\ITESMCVA.mdf;Integrated Security=True;Connect Timeout=30");
                 connection.Open();
 
@@ -72,6 +75,7 @@ namespace SISCA.A
                     ds = new DataSet();
                     da.Fill(ds);
                     now = DateTime.Now;
+                    // Ruta de localizacion donde se desea guardar el archivo excel con el registro de usuarios
                     ds.WriteXml(@"c:/Users/carlosemilianocastro/Desktop/RegistroUsuarios_"+now.ToString("m,M")+".xls");
                     MessageBox.Show("Archivo guardado exitosamente con el nombre de:  RegistroUsuarios_" + now.ToString("m,M"), "SISCA.A - Registro de usuarios");
                 }

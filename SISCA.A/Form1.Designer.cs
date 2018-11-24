@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -43,13 +44,13 @@
             this.EntradaBox = new System.Windows.Forms.TextBox();
             this.EntradaB = new System.Windows.Forms.Label();
             this.HoraBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.TextoHora = new System.Windows.Forms.Label();
             this.AlumnoBox = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.TextoAlumno = new System.Windows.Forms.Label();
             this.CarreraBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.TextoCarrera = new System.Windows.Forms.Label();
             this.NombreBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.TextoNombre = new System.Windows.Forms.Label();
             this.MatriculaBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,12 +58,11 @@
             this.ContraLabel = new System.Windows.Forms.Label();
             this.ContraBox = new System.Windows.Forms.TextBox();
             this.ContraObli = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -77,6 +77,17 @@
             this.panel1.Size = new System.Drawing.Size(956, 100);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(722, 6);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(222, 88);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 2;
+            this.pictureBox3.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -158,6 +169,7 @@
             this.Continuar.TabIndex = 37;
             this.Continuar.Text = "Continuar";
             this.Continuar.UseVisualStyleBackColor = false;
+            this.Continuar.Visible = false;
             this.Continuar.Click += new System.EventHandler(this.Continuar_Click);
             // 
             // Llenar
@@ -205,6 +217,7 @@
             this.EntradaBox.Name = "EntradaBox";
             this.EntradaBox.Size = new System.Drawing.Size(295, 24);
             this.EntradaBox.TabIndex = 35;
+            this.EntradaBox.Visible = false;
             // 
             // EntradaB
             // 
@@ -216,6 +229,8 @@
             this.EntradaB.TabIndex = 34;
             this.EntradaB.Text = "Entrada / Salida";
             this.EntradaB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.EntradaB.Visible = false;
+            this.EntradaB.Click += new System.EventHandler(this.EntradaB_Click);
             // 
             // HoraBox
             // 
@@ -225,17 +240,19 @@
             this.HoraBox.Name = "HoraBox";
             this.HoraBox.Size = new System.Drawing.Size(304, 24);
             this.HoraBox.TabIndex = 33;
+            this.HoraBox.Visible = false;
             // 
-            // label7
+            // TextoHora
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(41, 443);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(93, 17);
-            this.label7.TabIndex = 32;
-            this.label7.Text = "Hora / Fecha";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TextoHora.AutoSize = true;
+            this.TextoHora.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextoHora.Location = new System.Drawing.Point(41, 443);
+            this.TextoHora.Name = "TextoHora";
+            this.TextoHora.Size = new System.Drawing.Size(93, 17);
+            this.TextoHora.TabIndex = 32;
+            this.TextoHora.Text = "Hora / Fecha";
+            this.TextoHora.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TextoHora.Visible = false;
             // 
             // AlumnoBox
             // 
@@ -245,17 +262,20 @@
             this.AlumnoBox.Name = "AlumnoBox";
             this.AlumnoBox.Size = new System.Drawing.Size(853, 24);
             this.AlumnoBox.TabIndex = 31;
+            this.AlumnoBox.Visible = false;
+            this.AlumnoBox.TextChanged += new System.EventHandler(this.AlumnoBox_TextChanged);
             // 
-            // label6
+            // TextoAlumno
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(41, 376);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(151, 17);
-            this.label6.TabIndex = 30;
-            this.label6.Text = "Alumno / Colaborador";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TextoAlumno.AutoSize = true;
+            this.TextoAlumno.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextoAlumno.Location = new System.Drawing.Point(41, 376);
+            this.TextoAlumno.Name = "TextoAlumno";
+            this.TextoAlumno.Size = new System.Drawing.Size(151, 17);
+            this.TextoAlumno.TabIndex = 30;
+            this.TextoAlumno.Text = "Alumno / Colaborador";
+            this.TextoAlumno.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TextoAlumno.Visible = false;
             // 
             // CarreraBox
             // 
@@ -265,17 +285,19 @@
             this.CarreraBox.Name = "CarreraBox";
             this.CarreraBox.Size = new System.Drawing.Size(853, 24);
             this.CarreraBox.TabIndex = 29;
+            this.CarreraBox.Visible = false;
             // 
-            // label5
+            // TextoCarrera
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(41, 311);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(162, 17);
-            this.label5.TabIndex = 28;
-            this.label5.Text = "Carrera (siglas) / Cargo";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TextoCarrera.AutoSize = true;
+            this.TextoCarrera.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextoCarrera.Location = new System.Drawing.Point(41, 311);
+            this.TextoCarrera.Name = "TextoCarrera";
+            this.TextoCarrera.Size = new System.Drawing.Size(162, 17);
+            this.TextoCarrera.TabIndex = 28;
+            this.TextoCarrera.Text = "Carrera (siglas) / Cargo";
+            this.TextoCarrera.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TextoCarrera.Visible = false;
             // 
             // NombreBox
             // 
@@ -285,17 +307,19 @@
             this.NombreBox.Name = "NombreBox";
             this.NombreBox.Size = new System.Drawing.Size(853, 24);
             this.NombreBox.TabIndex = 27;
+            this.NombreBox.Visible = false;
             // 
-            // label4
+            // TextoNombre
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(41, 241);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 17);
-            this.label4.TabIndex = 26;
-            this.label4.Text = "Nombre";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TextoNombre.AutoSize = true;
+            this.TextoNombre.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextoNombre.Location = new System.Drawing.Point(41, 241);
+            this.TextoNombre.Name = "TextoNombre";
+            this.TextoNombre.Size = new System.Drawing.Size(59, 17);
+            this.TextoNombre.TabIndex = 26;
+            this.TextoNombre.Text = "Nombre";
+            this.TextoNombre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TextoNombre.Visible = false;
             // 
             // MatriculaBox
             // 
@@ -373,17 +397,6 @@
             this.ContraObli.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ContraObli.Visible = false;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(722, 6);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(222, 88);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 2;
-            this.pictureBox3.TabStop = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -405,14 +418,14 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.MatriculaBox);
             this.Controls.Add(this.CarreraObliga);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.TextoNombre);
             this.Controls.Add(this.EntradaBox);
             this.Controls.Add(this.NombreBox);
             this.Controls.Add(this.EntradaB);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.TextoCarrera);
             this.Controls.Add(this.HoraBox);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.TextoAlumno);
+            this.Controls.Add(this.TextoHora);
             this.Controls.Add(this.AlumnoBox);
             this.Font = new System.Drawing.Font("NeueHaasGroteskText Pro", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -422,11 +435,11 @@
             this.Text = "SISCA.A";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -447,13 +460,13 @@
         private System.Windows.Forms.TextBox EntradaBox;
         private System.Windows.Forms.Label EntradaB;
         private System.Windows.Forms.TextBox HoraBox;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label TextoHora;
         private System.Windows.Forms.TextBox AlumnoBox;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label TextoAlumno;
         private System.Windows.Forms.TextBox CarreraBox;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label TextoCarrera;
         public System.Windows.Forms.TextBox NombreBox;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label TextoNombre;
         public System.Windows.Forms.TextBox MatriculaBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
