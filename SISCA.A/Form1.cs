@@ -515,6 +515,10 @@ namespace SISCA.A
             {
                 MessageBox.Show("Matrícula/nómina no coinciden, intenta llenar el fomulario de nuevo", "SISCA.A - Registro de usuarios");
             }
+            else if (!formularioLLeno && administrador)
+            {
+
+            }
             else
             {
                 MessageBox.Show("Formulario incompleto", "SISCA.A - Registro de usuarios");
