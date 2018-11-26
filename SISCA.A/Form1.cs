@@ -278,6 +278,8 @@ namespace SISCA.A
                 // Si el primera letra de la matricula es L, esta bien escrita su matricula y no es administrador
                 else if (PrimeraLetra == 'L' && validarMatricula(MatriculaBox.Text))
                 {
+                   
+
                     output = null;
                     string mat = "L";
                     for (int x = 1; x < MatriculaBox.Text.Length; x++)
